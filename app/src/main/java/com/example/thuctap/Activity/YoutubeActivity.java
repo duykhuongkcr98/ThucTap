@@ -27,11 +27,14 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     private TextView tvCategory;
     private TextView tvTitle;
     private TextView tvContent;
+    private  Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube);
+        intent = getIntent();
+
 
         youTubePlayerView = findViewById(R.id.myYoutube);
         youTubePlayerView.initialize(API_KEY,YoutubeActivity.this);
@@ -42,7 +45,9 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-        youTubePlayer.cueVideo("F5tS5m86bOI");
+
+        Toast.makeText(this,intent.getStringExtra("url"),Toast.LENGTH_SHORT).show();
+        youTubePlayer.cueVideo(intent.getStringExtra("url"));
         youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
     }
 
@@ -94,5 +99,11 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
                 });
             }
         }).start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
