@@ -18,6 +18,9 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 
 public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
     String API_KEY = "AIzaSyBQkjoD45SfYIJv5Rj5aUy0JByGvLMTqJo";
@@ -35,18 +38,18 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         setContentView(R.layout.activity_youtube);
         intent = getIntent();
 
-
+        tvTitle = findViewById(R.id.tv_title);
         youTubePlayerView = findViewById(R.id.myYoutube);
         youTubePlayerView.initialize(API_KEY,YoutubeActivity.this);
 
-      //  getBodyText();
+        getBodyText();
 
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
 
-        Toast.makeText(this,intent.getStringExtra("url"),Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this,intent.getStringExtra("url"),Toast.LENGTH_SHORT).show();
         youTubePlayer.cueVideo(intent.getStringExtra("url"));
         youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
     }
@@ -79,13 +82,13 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
                 final StringBuilder builder = new StringBuilder();
 
                 try {
-                    String url="https://www.youtube.com/watch?v=_aghWPzkB7M";//your website url
+                    String url="https://www.survivingwithandroid.com/2014/04/parsing-html-in-android-with-jsoup-2.html";//your website url
                     Document doc = Jsoup.connect(url).get();
                     Element docElement = doc.body();
                     Log.d("Test", String.valueOf(docElement));
                     Log.d("Test", String.valueOf(docElement.getElementsByClass("content style-scope ytd-video-secondary-info-renderer")));
-                    //Elements body = doc.getElementsByClass("style-scope ytd-video-secondary-info-renderer");
-                    builder.append(docElement.getElementsByClass("content"));
+                    Elements body = doc.getElementsByClass("style-scope ytd-video-secondary-info-renderer");
+                    builder.append(docElement.getElementsByClass("entry-title"));
 
                 } catch (Exception e) {
                     builder.append("Error : ").append(e.getMessage()).append("\n");
@@ -99,6 +102,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
                 });
             }
         }).start();
+
     }
 
     @Override
