@@ -31,25 +31,26 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_youtube);
 
         youTubePlayerView = findViewById(R.id.myYoutube);
         youTubePlayerView.initialize(API_KEY,YoutubeActivity.this);
 
-
+      //  getBodyText();
 
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
         youTubePlayer.cueVideo("F5tS5m86bOI");
-        youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+       // youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
     }
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         if (youTubeInitializationResult.isUserRecoverableError()){
             youTubeInitializationResult.getErrorDialog(YoutubeActivity.this,REQUEST_VIDEO);
+
         }
         else {
             Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
