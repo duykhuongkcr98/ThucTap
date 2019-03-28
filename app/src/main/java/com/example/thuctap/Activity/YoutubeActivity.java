@@ -21,8 +21,8 @@ import org.jsoup.nodes.Element;
 
 public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
     String API_KEY = "AIzaSyBQkjoD45SfYIJv5Rj5aUy0JByGvLMTqJo";
-    YouTubePlayerView youTubePlayerView;
-    int REQUEST_VIDEO = 1;
+    private YouTubePlayerView youTubePlayerView;
+    private int REQUEST_VIDEO = 1;
     private ProgressDialog progressDialog;
     private TextView tvCategory;
     private TextView tvTitle;
@@ -34,7 +34,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         setContentView(R.layout.activity_main);
 
         youTubePlayerView = findViewById(R.id.myYoutube);
-        youTubePlayerView.initialize(API_KEY,this);
+        youTubePlayerView.initialize(API_KEY,YoutubeActivity.this);
 
 
 
@@ -43,6 +43,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
         youTubePlayer.cueVideo("F5tS5m86bOI");
+        youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
     }
 
     @Override
@@ -63,5 +64,34 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
             youTubePlayerView.initialize(API_KEY,YoutubeActivity.this);
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void getBodyText() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final StringBuilder builder = new StringBuilder();
+
+                try {
+                    String url="https://www.youtube.com/watch?v=_aghWPzkB7M";//your website url
+                    Document doc = Jsoup.connect(url).get();
+                    Element docElement = doc.body();
+                    Log.d("Test", String.valueOf(docElement));
+                    Log.d("Test", String.valueOf(docElement.getElementsByClass("content style-scope ytd-video-secondary-info-renderer")));
+                    //Elements body = doc.getElementsByClass("style-scope ytd-video-secondary-info-renderer");
+                    builder.append(docElement.getElementsByClass("content"));
+
+                } catch (Exception e) {
+                    builder.append("Error : ").append(e.getMessage()).append("\n");
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvTitle.setText(builder.toString());
+                    }
+                });
+            }
+        }).start();
     }
 }
