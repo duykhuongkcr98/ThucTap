@@ -22,7 +22,7 @@ import org.jsoup.nodes.Element;
 public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
     String API_KEY = "AIzaSyBQkjoD45SfYIJv5Rj5aUy0JByGvLMTqJo";
     private YouTubePlayerView youTubePlayerView;
-    private int REQUEST_VIDEO = 1;
+    private int REQUEST_VIDEO = 123;
     private ProgressDialog progressDialog;
     private TextView tvCategory;
     private TextView tvTitle;
@@ -43,7 +43,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
         youTubePlayer.cueVideo("F5tS5m86bOI");
-       // youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+        youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
     }
 
     @Override
