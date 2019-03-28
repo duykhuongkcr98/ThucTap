@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">ThucTap</string>
+    <string name="alert_dialog">Không có kết nối Internet, vui lòng kết nối internet và thử lại</string>
+    <string name="btn_thulai">Thử lại</string>
+
+    <string-array name="song_name">
+        <item>Lạ Lùng</item>
+        <item>Phố Xa</item>
+        <item>Đông Kiếm Em</item>
+        <item>Lạ </item>
+        <item>Vội Vàng</item>
+        <item>Mượn Rượu Tỏ Tình</item>
+        <item>Thương</item>
+        <item>Tôi Là Ai Trong Em</item>
+        <item>Màu nước Mắt</item>
+        <item>Thanh Xuân</item>
+    </string-array>
+
+    <string-array name="singer_name">
+        <item>Vũ</item>
+        <item>Thế Phương</item>
+        <item>Vũ</item>
+        <item>Thái Ngân </item>
+        <item>Phạm Hoài Nam</item>
+        <item>Emily, Bigdady</item>
+        <item>Reddy</item>
+        <item>Erik</item>
+        <item>Ngyuễn Trần Trung Quânt</item>
+        <item>Dalab</item>
+    </string-array>
+
+    <string-array name="url">
+        <item>F5tS5m86bOI</item>
+        <item>_MTcfFG6LNU</item>
+        <item>NLBTbCfR-Fg</item>
+        <item>tndWY2o-aBA</item>
+        <item>n3vAvg7eI0E</item>
+        <item>aGUQsb31TEw</item>
+        <item>d6wuaoYUFTM</item>
+        <item>Hl2fJrjspCU</item>
+        <item>kgfNvOTPAJo</item>
+        <item>GgQFO8dL5XQ</item>
+    </string-array>
+
+    <string-array name="img">
+        <item>lalung</item>
+        <item>phoxa</item>
+        <item>dongkiemem</item>
+        <item>la</item>
+        <item>voivang</item>
+        <item>muonruou</item>
+        <item>la</item>
+        <item>toilaaite</item>
+        <item>maunuocmat</item>
+        <item>thanhxuan</item>
+    </string-array>
+
+
+
+</resources>
