@@ -82,13 +82,13 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
                 final StringBuilder builder = new StringBuilder();
 
                 try {
-                    String url="https://www.survivingwithandroid.com/2014/04/parsing-html-in-android-with-jsoup-2.html";//your website url
+                    String url="https://www.youtube.com/watch?v=" + intent.getStringExtra("url");//your website url
                     Document doc = Jsoup.connect(url).get();
                     Element docElement = doc.body();
-                    Log.d("Test", String.valueOf(docElement));
-                    Log.d("Test", String.valueOf(docElement.getElementsByClass("content style-scope ytd-video-secondary-info-renderer")));
-                    Elements body = doc.getElementsByClass("style-scope ytd-video-secondary-info-renderer");
-                    builder.append(docElement.getElementsByClass("entry-title"));
+//                    Log.d("Test", String.valueOf(docElement));
+//                    Log.d("Test", String.valueOf(docElement.getElementsByClass("content style-scope ytd-video-secondary-info-renderer")));
+//                    Elements body = doc.getElementsByClass("style-scope ytd-video-secondary-info-renderer");
+                    builder.append(docElement.getElementsByClass("content style-scope ytd-video-secondary-info-renderer"));
 
                 } catch (Exception e) {
                     builder.append("Error : ").append(e.getMessage()).append("\n");
